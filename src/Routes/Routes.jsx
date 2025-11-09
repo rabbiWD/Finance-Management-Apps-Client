@@ -5,6 +5,7 @@ import Login from "../Pages/Auth/Login";
 import Home from "../Pages/Home/Home";
 import AddTransaction from "../Pages/AddTransaction/AddTransaction";
 import MyProfile from "../Pages/MyProfile/MyProfile";
+import UpdateProfile from "../Pages/UpdateProfile/UpdateProfile";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
       {
         path: 'my-profile',
         element: <MyProfile/>
+      },
+      {
+        path: 'update-profile',
+        element: <UpdateProfile/>
       },
       {
         path: 'add-transaction',

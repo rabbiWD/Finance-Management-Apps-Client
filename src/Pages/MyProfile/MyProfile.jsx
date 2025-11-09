@@ -18,7 +18,7 @@ const MyProfile = () => {
         </h2>
         <p className="text-gray-500 text-center">{user?.email}</p>
         <button
-          onClick={() => navigate("/updateProfile")}
+          onClick={() => navigate("/update-profile")}
           className="btn w-full bg-indigo-600 hover:bg-indigo-700 text-white border-none mt-4"
         >
           Update Profile
