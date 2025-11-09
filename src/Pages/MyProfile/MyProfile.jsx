@@ -6,7 +6,9 @@ const MyProfile = () => {
   const { user } = use(AuthContext);
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white flex items-center justify-center py-10">
+    <div className="bg-gradient-to-b from-indigo-50 to-white">   
+        <h2 className="text-center font-bold text-2xl pt-5">My Profile</h2>
+        <div className=" flex items-center justify-center py-10">
       <div className="bg-white shadow-2xl rounded-2xl w-full max-w-sm p-8 border border-gray-100 flex flex-col items-center space-y-4">
         <img
           className="w-32 h-32 rounded-full object-cover border-2 border-indigo-200"
@@ -25,6 +27,8 @@ const MyProfile = () => {
         </button>
       </div>
     </div>
+    </div>
+    
   );
 };
 
