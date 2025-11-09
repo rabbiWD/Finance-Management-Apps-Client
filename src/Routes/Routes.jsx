@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../Layout/MainLayout";
+import Register from "../Pages/Auth/Register";
 
 
 export const router = createBrowserRouter([
@@ -13,4 +14,8 @@ export const router = createBrowserRouter([
     //     }
     // ]
   },
+  {
+    path: '/auth/register',
+    element: <Register></Register>
+  }
 ]);

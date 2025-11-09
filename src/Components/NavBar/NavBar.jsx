@@ -72,10 +72,10 @@ const NavBar = () => {
                     Log In
                   </Link>
                   <Link
-                    to="/auth/signup"
+                    to="/auth/register"
                     className="btn btn-sm bg-gray-100 text-gray-700 hover:bg-gray-200 w-full"
                   >
-                    Sign Up
+                    Register
                   </Link>
                 </>
               )}
@@ -200,10 +200,10 @@ const NavBar = () => {
                 Log In
               </Link>
               <Link
-                to="/auth/signup"
+                to="/auth/register"
                 className="btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full transition-all duration-300"
               >
-                Sign Up
+                Register
               </Link>
             </>
           
