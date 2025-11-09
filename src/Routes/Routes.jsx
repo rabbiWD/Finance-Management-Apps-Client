@@ -4,6 +4,7 @@ import Register from "../Pages/Auth/Register";
 import Login from "../Pages/Auth/Login";
 import Home from "../Pages/Home/Home";
 import AddTransaction from "../Pages/AddTransaction/AddTransaction";
+import MyProfile from "../Pages/MyProfile/MyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -14,10 +15,10 @@ export const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
-      // {
-      //   path: 'my-profile',
-      //   element:
-      // },
+      {
+        path: 'my-profile',
+        element: <MyProfile/>
+      },
       {
         path: 'add-transaction',
         element: <AddTransaction/>
