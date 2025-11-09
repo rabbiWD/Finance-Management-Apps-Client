@@ -3,9 +3,10 @@ import { AuthContext } from "../../Context/AuthContext";
 import { Link, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import { Eye, EyeOff } from "lucide-react";
+import { FaGoogle } from "react-icons/fa";
 
 const Register = () => {
-  const { createUser, setUser, updateUser } = use(AuthContext);
+  const { createUser, setUser, updateUser, signInWithGoogle } = use(AuthContext);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -55,6 +56,20 @@ const Register = () => {
         toast.error(error.message);
       });
   };
+
+   const handleGoogleSignIn = ()=>{
+        toast.loading('creating user...', {id: 'create-user'});
+        signInWithGoogle()
+        .then((result)=>{
+            toast.success('User created successfully!', {id: 'create-user'});
+            console.log(result.user);
+            navigate('/')
+        })
+        .catch((error) => {
+        console.log(error);
+        toast.error(error.message, { id: "create-user" });
+      });
+    }
 
   return (
     <div className="flex justify-center min-h-screen items-center bg-gradient-to-b from-indigo-50 to-white">
@@ -123,6 +138,14 @@ const Register = () => {
             <button type="submit" className="btn btn-neutral mt-3 w-full">
               Register
             </button>
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn bg-white rounded-full text-black border-[#e5e5e5]"
+            >
+              <FaGoogle />
+              Login with Google
+            </button>
+
             <p className="font-semibold text-center pt-5">
               Already have an Account?{" "}
               <Link
