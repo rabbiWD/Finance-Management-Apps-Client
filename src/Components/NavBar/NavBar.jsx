@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import { IoLogoModelS } from "react-icons/io";
@@ -9,6 +9,19 @@ import { IoLogIn, IoLogOut } from "react-icons/io5";
 
 const NavBar = () => {
   const {user, signOutUser} = use(AuthContext)
+
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
+
   return (
     <div className="navbar py-0 min-h-0 z-1 shadow-sm rounded-full glass-card max-w-7xl">
       <div className="navbar-start">
@@ -161,12 +174,12 @@ const NavBar = () => {
 
               {/* handle theme */}
 
-              {/* <input
+              <input
                 onChange={(e) => handleTheme(e.target.checked)}
                 type="checkbox"
                 defaultChecked={localStorage.getItem("theme") === "dark"}
-                className="toggle"
-              /> */}
+                className="toggle mt-2 mb-1"
+              />
 
               {/* <li>
                 <a>

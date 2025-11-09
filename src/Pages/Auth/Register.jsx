@@ -6,14 +6,14 @@ import { Eye, EyeOff } from "lucide-react";
 import { FaGoogle } from "react-icons/fa";
 
 const Register = () => {
-  const { createUser, setUser, updateUser, signInWithGoogle } = use(AuthContext);
+  const { createUser, setUser, updateUserProfile, signInWithGoogle } = use(AuthContext);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  const handleSignUp = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    console.log(e.target);
+    // console.log(e.target);
     const form = e.target;
     const name = form.name.value;
     const photo = form.photo.value;
@@ -38,7 +38,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         // console.log(user);
-        updateUser({ displayName: name, photoURL: photo })
+        updateUserProfile({ displayName: name, photoURL: photo })
           .then(() => {
             setUser({ ...user, displayName: name, photoURL: photo });
             toast.success("Register Successfully!");
@@ -78,7 +78,7 @@ const Register = () => {
           SignUp your account
         </h2>
 
-        <form onSubmit={handleSignUp} className="card-body">
+        <form onSubmit={handleRegister} className="card-body">
           <fieldset className="fieldset space-y-3">
             {/* name */}
             <div>
