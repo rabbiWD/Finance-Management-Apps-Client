@@ -54,18 +54,18 @@ const NavBar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to={"/all-models"}>
+              <NavLink to={"/add-transaction"}>
                 <IoLogoModelS /> Add Transaction
               </NavLink>
             </li>
              <li>
-              <NavLink to={"/all-models"}>
-                <IoLogoModelS /> Add Transaction
+              <NavLink to={"/my-transaction"}>
+                <IoLogoModelS /> My Transaction
               </NavLink>
             </li>
              <li>
-              <NavLink to={"/all-models"}>
-                <IoLogoModelS /> Add Transaction
+              <NavLink to={"/reports"}>
+                <IoLogoModelS /> Reports
               </NavLink>
             </li>
             <li className="mt-2 border-t pt-2">
@@ -108,17 +108,17 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/all-models"}>
+            <NavLink to={"/add-transaction"}>
               <IoLogoModelS /> Add Transaction
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/add-model"}>
+            <NavLink to={"/my-transaction"}>
               <ImBoxAdd /> My Transaction
             </NavLink>
           </li>
            <li>
-            <NavLink to={"/add-model"}>
+            <NavLink to={"/reports"}>
               <ImBoxAdd /> Reports
             </NavLink>
           </li>
@@ -166,11 +166,11 @@ const NavBar = () => {
 
               {/* <li>
                 <Link to={"/my-models"}>My Models</Link>
-              </li>
-
-              <li>
-                <Link to={"/my-downloads"}>My Downloads</Link>
               </li> */}
+
+              <li className="mt-1">
+                <Link to={"/my-profile"}>My Profile</Link>
+              </li>
 
               {/* handle theme */}
 
