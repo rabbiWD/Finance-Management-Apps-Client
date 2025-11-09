@@ -1,7 +1,14 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../../Context/AuthContext";
+import { IoLogoModelS } from "react-icons/io";
+import { GoHomeFill } from "react-icons/go";
+import { LuRotate3D } from "react-icons/lu";
+import { ImBoxAdd } from "react-icons/im";
+import { IoLogIn, IoLogOut } from "react-icons/io5";
 
 const NavBar = () => {
+  const {user, signOutUser} = use(AuthContext)
   return (
     <div className="navbar py-0 min-h-0 z-1 shadow-sm rounded-full glass-card max-w-7xl">
       <div className="navbar-start">
@@ -35,13 +42,48 @@ const NavBar = () => {
             </li>
             <li>
               <NavLink to={"/all-models"}>
-                <IoLogoModelS /> All Models
+                <IoLogoModelS /> Add Transaction
               </NavLink>
+            </li>
+             <li>
+              <NavLink to={"/all-models"}>
+                <IoLogoModelS /> Add Transaction
+              </NavLink>
+            </li>
+             <li>
+              <NavLink to={"/all-models"}>
+                <IoLogoModelS /> Add Transaction
+              </NavLink>
+            </li>
+            <li className="mt-2 border-t pt-2">
+              {user ? (
+                <button
+                  // onClick={handleLogOut}
+                  className="btn btn-sm bg-indigo-600 text-white hover:bg-indigo-700 w-full"
+                >
+                  Logout
+                </button>
+              ) : (
+                <>
+                  <Link
+                    to="/auth/login"
+                    className="btn btn-sm bg-indigo-500 text-white hover:bg-indigo-600 w-full mb-2"
+                  >
+                    Log In
+                  </Link>
+                  <Link
+                    to="/auth/signup"
+                    className="btn btn-sm bg-gray-100 text-gray-700 hover:bg-gray-200 w-full"
+                  >
+                    Sign Up
+                  </Link>
+                </>
+              )}
             </li>
           </ul>
         </div>
         <Link to={"/"} className="flex items-center gap-1 text-xl font-bold">
-          <LuRotate3D /> 3D Models Hub
+          <LuRotate3D /> FinEase
         </Link>
       </div>
       <div className="navbar-center hidden md:flex">
@@ -67,6 +109,7 @@ const NavBar = () => {
               <ImBoxAdd /> Reports
             </NavLink>
           </li>
+          
           {/* 
           <li>
             <NavLink to={"/profile"}>
@@ -76,14 +119,14 @@ const NavBar = () => {
         </ul>
       </div>
       <div className="navbar-end gap-3">
-        {/* {user ? (
+        {user ? (
           <div className="dropdown dropdown-end z-50">
             <div
               tabIndex={0}
               role="button"
               className="btn btn-ghost btn-circle avatar"
-            > */}
-              {/* <div className="w-9 border-2 border-gray-300 rounded-full">
+            >
+              <div className="w-9 border-2 border-gray-300 rounded-full">
                 <img
                   alt="Tailwind CSS Navbar component"
                   referrerPolicy="no-referrer"
@@ -92,7 +135,7 @@ const NavBar = () => {
                     "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                   }
                 />
-              </div> */}
+              </div>
             </div>
             <ul
               tabIndex="-1"
@@ -102,33 +145,35 @@ const NavBar = () => {
                 <li className="text-sm font-bold">{user.displayName}</li>
                 <li className="text-xs">{user.email}</li>
               </div>
-              <li className="mt-3">
+              {/* <li className="mt-3">
                 <Link to={"/profile"}>
                   <FaUser /> Profile
                 </Link>
-              </li>
+              </li> */}
 
-              <li>
+              {/* <li>
                 <Link to={"/my-models"}>My Models</Link>
               </li>
 
               <li>
                 <Link to={"/my-downloads"}>My Downloads</Link>
-              </li>
+              </li> */}
 
-              <input
+              {/* handle theme */}
+
+              {/* <input
                 onChange={(e) => handleTheme(e.target.checked)}
                 type="checkbox"
                 defaultChecked={localStorage.getItem("theme") === "dark"}
                 className="toggle"
-              />
+              /> */}
 
-              <li>
+              {/* <li>
                 <a>
                   {" "}
                   <FaGear /> Settings
                 </a>
-              </li>
+              </li> */}
               <li>
                 <button
                   onClick={signOutUser}
@@ -140,17 +185,33 @@ const NavBar = () => {
             </ul>
           </div>
         ) : (
-          <Link
-            to={"/auth/login"}
-            className="btn rounded-full border-gray-300  btn-sm bg-linear-to-r from-pink-500 to-red-500 text-white"
-          >
-            {" "}
-            <IoLogIn /> Login
-          </Link>
+          // <Link
+          //   to={"/auth/login"}
+          //   className="btn rounded-full border-gray-300  btn-sm bg-linear-to-r from-pink-500 to-red-500 text-white"
+          // >
+          //   {" "}
+          //   <IoLogIn /> Login
+          // </Link>
+          <>
+              <Link
+                to="/auth/login"
+                className="btn bg-indigo-500 text-white hover:bg-indigo-600 px-5 py-2 transition-all duration-300 rounded-full"
+              >
+                Log In
+              </Link>
+              <Link
+                to="/auth/signup"
+                className="btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full transition-all duration-300"
+              >
+                Sign Up
+              </Link>
+            </>
+          
+    
         )}
-//       </div>
-//     </div>
-//   );
-// };
+       </div>
+     </div>
+  );
+};
 
 export default NavBar;
