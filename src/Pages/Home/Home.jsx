@@ -4,6 +4,7 @@ import Budget from '../../Components/Budget/Budget';
 import Planning from '../../Components/Planning/Planning';
 
 const Home = () => {
+
     return (
         <div>
             <Banner/>
