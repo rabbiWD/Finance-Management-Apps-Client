@@ -7,6 +7,7 @@ import AddTransaction from "../Pages/AddTransaction/AddTransaction";
 import MyProfile from "../Pages/MyProfile/MyProfile";
 import UpdateProfile from "../Pages/UpdateProfile/UpdateProfile";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import MyTransaction from "../Pages/MyTransaction/MyTransaction";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: 'add-transaction',
         element: <AddTransaction/>
+      },
+      {
+        path: 'my-transaction',
+        element: <MyTransaction/>
       },
       {
         path: "/auth/login",

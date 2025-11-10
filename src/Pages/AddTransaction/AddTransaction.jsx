@@ -1,12 +1,15 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import toast from "react-hot-toast";
+import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
 
 const AddTransaction = () => {
   const { user } = use(AuthContext);
+  const [loading, setLoading] = useState(false);
 
   const handleAddTransaction = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const type = e.target.type.value;
     const category = e.target.category.value;
@@ -32,6 +35,7 @@ const AddTransaction = () => {
       toast.success('Transaction Successfully added')
       console.log(data);
       e.target.reset()
+      setLoading(false)
      
     })
     .catch((error)=>{
@@ -39,6 +43,10 @@ const AddTransaction = () => {
       })
 
   };
+
+  if(loading){
+    return <LoadingSpinner></LoadingSpinner>
+  }
 
   return (
     <div className="card border border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
