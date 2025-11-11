@@ -10,11 +10,15 @@ const MyTransaction = () => {
   const [transactions, setTransactions] = useState([]);
   const [trans, setTrans] = useState(null)
   const [loading, setLoading] = useState(true);
+  const [sortBy, setSortBy] = useState("createdAt"); 
+  const [order, setOrder] = useState("desc"); 
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (user?.email) {
-      fetch(`http://localhost:3000/my-transaction?email=${user.email}`)
+    // if (user?.email) {
+    if(!user?.email) return;
+    setLoading(true);
+      fetch(`http://localhost:3000/my-transaction?email=${user.email}&sortBy=${sortBy}&order=${order}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -24,8 +28,8 @@ const MyTransaction = () => {
         .catch((error) => {
           console.log(error);
         });
-    }
-  }, [user]);
+    // }
+  }, [user, sortBy, order]);
 
   //   delete transaction
   const handleDelete = (id) => {
@@ -117,6 +121,27 @@ const MyTransaction = () => {
     <div className="max-w-7xl mx-auto px-4 py-10">
       <h2 className="text-2xl font-bold text-center mb-5">My Transaction</h2>
 
+      
+      {/* Sort Options */}
+      <div className="flex justify-end gap-2 mb-5">
+        <select
+          className="select select-bordered"
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+        >
+          <option value="createdAt">Sort by Date</option>
+          <option value="amount">Sort by Amount</option>
+        </select>
+        <select
+          className="select select-bordered"
+          value={order}
+          onChange={(e) => setOrder(e.target.value)}
+        >
+          <option value="desc">Descending</option>
+          <option value="asc">Ascending</option>
+        </select>
+      </div>
+
       {transactions.length === 0 ? (
         <p>Transaction Not Found</p>
       ) : (
@@ -131,14 +156,14 @@ const MyTransaction = () => {
               //       : "bg-red-50 border-red-300"
               //   }`
             >
-              <h2 className="text-xl font-bold mb-3 text-gray-700">
+              <h2 className="text-xl font-bold mb-3 ">
                 Type: {transaction.type}
               </h2>
-              <h2 className="text-gray-700">
+              <h2 className="">
                 Category: {transaction.category}
               </h2>
-              <p className="text-gray-700">Amount: {transaction.amount}</p>
-              <p className="text-gray-700 mb-5">
+              <p className="">Amount: {transaction.amount} tk</p>
+              <p className="mb-5">
                 Date: {new Date(transaction.date).toLocaleDateString()}
               </p>
               <div className="flex justify-center gap-5 mt-4">
