@@ -77,7 +77,7 @@ const AddTransaction = () => {
                 Select category
               </option>
               <option value="Salary">Salary</option>
-              <option value="hopping">Shopping</option>
+              <option value="Shopping">Shopping</option>
               <option value="Food">Food</option>
               <option value="Bills">Bills</option>
               <option value="Other">Other</option>

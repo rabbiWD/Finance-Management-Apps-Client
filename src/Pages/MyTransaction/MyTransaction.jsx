@@ -1,14 +1,16 @@
 import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
 const MyTransaction = () => {
-    // const {id} = useParams
+  // const {id} = useParams
   const { user } = use(AuthContext);
   const [transactions, setTransactions] = useState([]);
+  const [trans, setTrans] = useState(null)
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (user?.email) {
@@ -40,9 +42,9 @@ const MyTransaction = () => {
       if (result.isConfirmed) {
         fetch(`http://localhost:3000/transactions/${id}`, {
           method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
+          headers: {
+            "Content-Type": "application/json",
+          },
         })
           .then((res) => res.json())
           .then((data) => {
@@ -53,17 +55,58 @@ const MyTransaction = () => {
                 text: "Your file has been deleted.",
                 icon: "success",
               });
-              setTransactions(transactions.filter((transaction) => transaction._id !== id));
+              setTransactions(
+                transactions.filter((transaction) => transaction._id !== id)
+              );
               // setTransactions(prevTransactions=>prevTransactions.filter((transaction) => transaction._id !== id));
             }
             // navigate("/all-models");
           })
           .catch((err) => {
             console.log(err);
-            Swal.fire('Error', 'Failed to delete', 'error');
+            Swal.fire("Error", "Failed to delete", "error");
           });
       }
     });
+  };
+
+  // Update transaction
+  const handleUpdate = (e) => {
+    e.preventDefault();
+
+    const updatedData = {
+      type: e.target.type.value,
+      category: e.target.category.value,
+      description: e.target.description.value,
+      amount: e.target.amount.value,
+      date: e.target.date.value,
+    };
+    fetch(`http://localhost:3000/transactions/${trans._id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        Swal.fire({
+          title: "Updated!",
+          text: "Transaction updated successfully",
+          icon: "success",
+        });
+        setTransactions(
+          transactions.map((transaction)=>
+          transaction._id === trans._id ? {...transaction, ...updatedData} : transaction
+        )
+        );
+        navigate(`/transaction-details/${trans._id}`, { state: { transaction: { ...trans, ...updatedData } } });
+        setTrans(null)
+      })
+      .catch((error)=>{
+        console.log(error);
+      })
+      
   };
 
   if (loading) {
@@ -99,21 +142,21 @@ const MyTransaction = () => {
                 Date: {new Date(transaction.date).toLocaleDateString()}
               </p>
               <div className="flex justify-center gap-5 mt-4">
-                <Link
-                  to={`/update/${transaction._id}`}
+                <Link 
+                  onClick={()=> setTrans(transaction)}
                   className="btn btn-secondary p-5 rounded-lg text-base"
                 >
                   Update
                 </Link>
                 <button
-                  onClick={()=> handleDelete(transaction._id)}
-                //   onClick={handleDelete}
+                  onClick={() => handleDelete(transaction._id)}
+                  //   onClick={handleDelete}
                   className="btn btn-outline p-5 rounded-lg text-base"
                 >
                   Delete
                 </button>
                 <Link
-                  to={`/transaction-details`}
+                  to={`/transaction-details/${transaction._id}`}
                   className="btn btn-primary p-5 rounded-lg text-base"
                 >
                   View Details
@@ -122,6 +165,73 @@ const MyTransaction = () => {
             </div>
           ))}
         </div>
+      )}
+
+      {trans && (
+        <dialog id="update_modal" className="modal modal-open">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg text-center mb-3">
+              Update Transaction
+            </h3>
+
+            <form onSubmit={handleUpdate} className="space-y-3">
+              <select
+                name="type"
+                defaultValue={trans.type}
+                className="select select-bordered w-full"
+              >
+                <option value="Income">Income</option>
+                <option value="Expense">Expense</option>
+              </select>
+
+              <input
+                type="text"
+                name="category"
+                defaultValue={trans.category}
+                placeholder="Category"
+                className="input input-bordered w-full"
+                required
+              />
+
+              <input
+                type="number"
+                name="amount"
+                defaultValue={trans.amount}
+                placeholder="Amount"
+                className="input input-bordered w-full"
+                required
+              />
+
+              <input
+                type="date"
+                name="date"
+                defaultValue={trans.date?.slice(0, 10)}
+                className="input input-bordered w-full"
+                required
+              />
+
+              <textarea
+                name="description"
+                defaultValue={trans.description}
+                className="textarea textarea-bordered w-full"
+                placeholder="Description"
+              ></textarea>
+
+              <div className="flex justify-end gap-2 mt-4">
+                <button type="submit" className="btn btn-success">
+                  Update
+                </button>
+                <button
+                  onClick={() => setTrans(null)}
+                  type="button"
+                  className="btn btn-ghost"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </dialog>
       )}
     </div>
   );
