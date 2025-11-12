@@ -1,16 +1,26 @@
-# React + Vite
+#  FiEase — Personal Finance Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Site URL:** [https://finance-tracker-client.vercel.app](https://finance-tracker-client.vercel.app)
 
-Currently, two official plugins are available:
+A modern and user-friendly web application to manage your daily income, expenses, and financial goals efficiently. Built with **React.js**, **Express.js**, and **MongoDB**, this app helps you stay on top of your money with visual insights and smooth interaction.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+##  Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-  **Overview:** Shows total balance, total income, and total expenses in real time.
+-  **Transaction Management:** Add, edit, and delete transactions with category and date.
+-  **Sorting:** Sort your transactions by **date** or **amount** for better tracking.
+-  **Charts:** Visualize your spending using **Pie Chart (by category)** and **Bar Chart (by month)**.
+-  **User Authentication:** Secure login/signup system with **JWT-based authentication**.
+-  **Responsive UI:** Fully optimized for desktop, tablet, and mobile devices.
+-  **Comments Section:** Add comments and notes on your transactions for personal reminders.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ⚙️ Tech Stack
+
+**Frontend:** React.js, Tailwind CSS, DaisyUI, React Router, Recharts  
+**Backend:** Node.js, Express.js, MongoDB  
+**Authentication:** Firebase Auth  
+**Deployment:** Netlify (Client), Vercel (Server)

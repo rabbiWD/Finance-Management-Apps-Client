@@ -22,8 +22,12 @@ const MyTransaction = () => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
+          // setTransactions(data);
+          // setLoading(false);
+          setTimeout(() => {
           setTransactions(data);
           setLoading(false);
+        }, 150);
         })
         .catch((error) => {
           console.log(error);
@@ -112,10 +116,12 @@ const MyTransaction = () => {
       })
       
   };
+  console.log(loading);
 
   if (loading) {
     return <LoadingSpinner />;
   }
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
@@ -142,7 +148,7 @@ const MyTransaction = () => {
         </select>
       </div>
 
-      {transactions.length === 0 ? (
+      {transactions.length === 0 && loading ? (
         <p>Transaction Not Found</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -169,20 +175,20 @@ const MyTransaction = () => {
               <div className="flex justify-center gap-5 mt-4">
                 <Link 
                   onClick={()=> setTrans(transaction)}
-                  className="btn btn-secondary p-5 rounded-lg text-base"
+                  className="btn btn-secondary sm:p-1 md:p-5 rounded-lg text-base"
                 >
                   Update
                 </Link>
                 <button
                   onClick={() => handleDelete(transaction._id)}
                   //   onClick={handleDelete}
-                  className="btn btn-outline p-5 rounded-lg text-base"
+                  className="btn btn-outline sm:p-1 md:p-5 lg:p-5 rounded-lg text-base"
                 >
                   Delete
                 </button>
                 <Link
                   to={`/transaction-details/${transaction._id}`}
-                  className="btn btn-primary p-5 rounded-lg text-base"
+                  className="btn btn-primary sm:p-1 md:p-5 rounded-lg text-base"
                 >
                   View Details
                 </Link>
