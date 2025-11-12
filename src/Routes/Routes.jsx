@@ -10,6 +10,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import MyTransaction from "../Pages/MyTransaction/MyTransaction";
 import TransactionDetails from "../Pages/TransactionDetails/TransactionDetails";
 import PrivateRoute from "./PrivateRoute";
+import Reports from "../Pages/Reports/Reports";
 
 export const router = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'my-profile',
-        element: <MyProfile/>
+        element: (
+          <PrivateRoute>
+            <MyProfile/>
+          </PrivateRoute>
+        )
       },
       {
         path: 'update-profile',
@@ -32,7 +37,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'add-transaction',
-        element: <AddTransaction/>
+        element: (
+          <PrivateRoute>
+            <AddTransaction/>
+          </PrivateRoute>
+        )
       },
       {
         path: 'my-transaction',
@@ -44,8 +53,16 @@ export const router = createBrowserRouter([
       },
       {
         path: 'transaction-details/:id',
-        element:<TransactionDetails/>
+        element:(
+          <PrivateRoute>
+            <TransactionDetails/>
+          </PrivateRoute>
+        )
           
+      },
+      {
+        path: 'reports',
+        element: <Reports></Reports>
       },
       {
         path: "/auth/login",
