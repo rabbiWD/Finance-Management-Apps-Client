@@ -6,9 +6,10 @@ import { GoHomeFill } from "react-icons/go";
 import { LuRotate3D } from "react-icons/lu";
 import { ImBoxAdd } from "react-icons/im";
 import { IoLogIn, IoLogOut } from "react-icons/io5";
+import toast from "react-hot-toast";
 
 const NavBar = () => {
-  const {user, signOutUser} = use(AuthContext)
+  const {user, signOutUser, setLoading, setUser} = use(AuthContext);
 
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
@@ -189,7 +190,12 @@ const NavBar = () => {
               </li> */}
               <li>
                 <button
-                  onClick={signOutUser}
+                  onClick={()=> {
+                    signOutUser();
+                    setUser(null);
+                    toast.success("logout succesfully")
+                    setLoading(false)
+                  }}
                   className="btn btn-xs text-left bg-linear-to-r from-pink-500 to-red-500 text-white"
                 >
                   <IoLogOut /> Logout

@@ -4,6 +4,7 @@ import { Navigate } from 'react-router';
 
 const PrivateRoute = ({children}) => {
     const {user, loading} = use(AuthContext)
+    console.log(loading);
     if(loading){
         return <div>Loading...</div>
     }

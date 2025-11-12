@@ -114,6 +114,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        
         toast.success("Login successfully");
         // navigate(from, {replace: true});
         navigate(`${location.state ? location.state : "/"}`);
@@ -149,7 +150,7 @@ const Login = () => {
   return (
     <div className="flex justify-center min-h-screen items-center bg-gradient-to-b from-indigo-50 to-white">
       <div className="card bg-white w-full max-w-sm shadow-xl border border-gray-100 rounded-2xl">
-        <h2 className="text-2xl font-semibold text-center py-5 text-indigo-600">
+        <h2 className="text-2xl font-bold text-center py-5 text-secondary">
           Login your account
         </h2>
 
@@ -161,7 +162,7 @@ const Login = () => {
                <input
               name="email"
               type="email"
-              className="input w-full"
+              className="input w-full "
               ref={emailRef}
               placeholder="Enter your email"
               required
@@ -193,7 +194,7 @@ const Login = () => {
               <span className="link link-hover text-sm text-indigo-600 cursor-pointer">Forgot Password</span>
             </div>
 
-            <button type="submit" className="btn btn-neutral mt-4 w-full">
+            <button type="submit" className="btn btn-neutral mt-4 w-full" >
               Login
             </button>
           </fieldset>
@@ -239,6 +240,7 @@ const Login = () => {
               </Link>
             </p>
       </div>
+      
     </div>
   );
 };

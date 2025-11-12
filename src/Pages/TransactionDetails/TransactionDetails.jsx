@@ -9,28 +9,38 @@ const TransactionDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let transactionData = null;
+    // let transactionData = null;
     fetch(`http://localhost:3000/transactions/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        // console.log("Transaction:", data);
+        console.log("Transaction:", data);
+
+        fetch(`http://localhost:3000/transactions/category/${data.result.category}`)
+        .then(res=> res.json())
+        .then((data)=>{
+            console.log(data);
+            const total = data.result.reduce((sum, tk) => sum + Number(tk.amount), 0);
+            console.log(total);
+            setTotalAmount(total);
+        })
+
         const transactionData = data.result || data;
         setTransaction(transactionData);
 
         // now fetch all transactions of this user
-        return fetch(
-          `http://localhost:3000/my-transaction?email=${transactionData.userEmail}`
-        );
-      })
-      .then((res) => res.json())
-      .then((allTransactions) => {
-        if (!transactionData) return;
+    //     return fetch(
+    //       `http://localhost:3000/my-transaction?email=${transactionData.userEmail}`
+    //     );
+    //   })
+    //   .then((res) => res.json())
+    //   .then((allTransactions) => {
+    //     if (!transactionData) return;
         // Calculate total amount for same category
-        const total = allTransactions
-          .filter((tk) => tk.category === transactionData.category)
-          .reduce((sum, tk) => sum + Number(tk.amount), 0);
-        console.log(total);
-        setTotalAmount(total);
+        // const total = allTransactions
+        //   .filter((tk) => tk.category === transactionData.category)
+        //   .reduce((sum, tk) => sum + Number(tk.amount), 0);
+        // console.log(total);
+        // setTotalAmount(total);
       })
       .catch((err) => console.error("Error fetching details:", err))
       .finally(() => setLoading(false));
