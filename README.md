@@ -1,6 +1,6 @@
 #  FiEase — Personal Finance Management App
 
-**Live Site URL:** [https://finance-tracker-client.vercel.app](https://finance-tracker-client.vercel.app)
+**Live Site URL:** [https://finance-management-apps-client.netlify.app/](https://finance-management-apps-client.netlify.app/)
 
 A modern and user-friendly web application to manage your daily income, expenses, and financial goals efficiently. Built with **React.js**, **Express.js**, and **MongoDB**, this app helps you stay on top of your money with visual insights and smooth interaction.
 
