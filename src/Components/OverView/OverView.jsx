@@ -10,7 +10,7 @@ const OverView = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/overview?email=${user.email}`)
+      fetch(`https://finance-management-apps-server.vercel.app/overview?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -23,10 +23,11 @@ const OverView = () => {
         });
     }
   }, [user]);
-  
+
    if(!user){
     return null;
    }
+
   if (loading) {
     return <LoadingSpinner />;
   }

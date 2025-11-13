@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
     path: "/",
     element: <MainLayout />,
     errorElement: <ErrorPage/>,
-    // hydrateFallbackElement: <p className="flex justify-center items-center h-screen"><span className="loading loading-spinner loading-xl"></span></p>,
+    hydrateFallbackElement: <p className="flex justify-center items-center h-screen"><span className="loading loading-spinner loading-xl"></span></p>,
     children: [
       {
         index: true,

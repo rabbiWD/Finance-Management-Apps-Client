@@ -11,14 +11,14 @@ const TransactionDetails = () => {
 
   useEffect(() => {
     // let transactionData = null;
-    fetch(`http://localhost:3000/transactions/${id}`)
+    fetch(`https://finance-management-apps-server.vercel.app/transactions/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Transaction:", data);
         const transactionData = data.result || data;
         setTransaction(transactionData);
 
-        fetch(`http://localhost:3000/transactions/category/${data.result.category}`)
+        fetch(`https://finance-management-apps-server.vercel.app/transactions/category/${data.result.category}`)
         .then(res=> res.json())
         .then((data)=>{
             console.log(data);
@@ -41,54 +41,6 @@ const TransactionDetails = () => {
   }
 
   return (
-    // <div className="flex justify-center mt-10">
-    //   <div className="bg-outline shadow-lg rounded-2xl p-6 w-full max-w-md border border-gray-200">
-    //     <h2 className="text-2xl font-bold mb-4">Transaction Details</h2>
-    //     <div className="space-y-3">
-    //       <div className="flex justify-between">
-    //         <span className="font-medium">Type:</span>
-    //         <span className="">{transaction.type}</span>
-    //       </div>
-
-    //       <div className="flex justify-between">
-    //         <span className="font-medium">Category:</span>
-    //         <span className="">{transaction.category}</span>
-    //       </div>
-
-    //       <div className="flex justify-between">
-    //         <span className="font-medium">Amount:</span>
-    //         <span className="text-green-600 font-semibold">
-    //           {transaction.amount} tk
-    //         </span>
-    //       </div>
-
-    //       <div className="flex justify-between">
-    //         <span className="font-medium">Description:</span>
-    //         <span className="">{transaction.description}</span>
-    //       </div>
-
-    //       <div className="flex justify-between">
-    //         <span className="font-medium">Date:</span>
-    //         <span className="">{transaction.date}</span>
-    //       </div>
-
-    //       <div className="flex justify-between border-t pt-2 mt-2">
-    //         <span className="font-bold">
-    //           Total in this category:
-    //         </span>
-    //         <span className="font-bold text-blue-600">{totalAmount} tk</span>
-    //       </div>
-
-    //       {/* <p>Type: {transaction.type}</p> */}
-    //       {/* <p>Category: {transaction.category}</p>
-    //             <p>Amount: {transaction.amount} tk</p>
-    //             <p>Description: {transaction.description}</p> */}
-    //       {/* <p>Date: {new Date(transaction.date).toLocaleDateString()}</p> */}
-    //       {/* <p>Date: {transaction.date}</p>
-    //             <p>Total in this category: {totalAmount} tk</p> */}
-    //     </div>
-    //   </div>
-    // </div>
 
     <div className="min-h-screen flex justify-center items-start py-12 bg-gradient-to-br from-cyan-300 via-emerald-300 to-sky-400 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-700 px-4">
       <motion.div

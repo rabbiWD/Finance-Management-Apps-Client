@@ -19,7 +19,7 @@ const MyTransaction = () => {
     // if (user?.email) {
     if(!user?.email) return;
     setLoading(true);
-      fetch(`http://localhost:3000/my-transaction?email=${user.email}&sortBy=${sortBy}&order=${order}`)
+      fetch(`https://finance-management-apps-server.vercel.app/my-transaction?email=${user.email}&sortBy=${sortBy}&order=${order}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -49,7 +49,7 @@ const MyTransaction = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/transactions/${id}`, {
+        fetch(`https://finance-management-apps-server.vercel.app/transactions/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -90,7 +90,7 @@ const MyTransaction = () => {
       amount: e.target.amount.value,
       date: e.target.date.value,
     };
-    fetch(`http://localhost:3000/transactions/${trans._id}`, {
+    fetch(`https://finance-management-apps-server.vercel.app/transactions/${trans._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -125,147 +125,6 @@ const MyTransaction = () => {
 
 
   return (
-    // <div className="max-w-7xl mx-auto px-4 py-10">
-    //   <h2 className="text-2xl font-bold text-center mb-5">My Transaction</h2>
-
-      
-    //   {/* Sort Options */}
-    //   <div className="flex justify-end gap-2 mb-5">
-    //     <select
-    //       className="select select-bordered"
-    //       value={sortBy}
-    //       onChange={(e) => setSortBy(e.target.value)}
-    //     >
-    //       <option value="createdAt">Sort by Date</option>
-    //       <option value="amount">Sort by Amount</option>
-    //     </select>
-    //     <select
-    //       className="select select-bordered"
-    //       value={order}
-    //       onChange={(e) => setOrder(e.target.value)}
-    //     >
-    //       <option value="desc">Descending</option>
-    //       <option value="asc">Ascending</option>
-    //     </select>
-    //   </div>
-
-    //   {transactions.length === 0 && loading ? (
-    //     <p>Transaction Not Found</p>
-    //   ) : (
-    //     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    //       {transactions.map((transaction) => (
-    //         <div
-    //           key={transaction._id}
-    //           className="p-5 rounded-xl shadow-md border transition-transform hover:scale-[1.02]"
-    //           //     ${
-    //           //     transaction.type === "Income"
-    //           //       ? "bg-green-50 border-green-300"
-    //           //       : "bg-red-50 border-red-300"
-    //           //   }`
-    //         >
-    //           <h2 className="text-xl font-bold mb-3 ">
-    //             Type: {transaction.type}
-    //           </h2>
-    //           <h2 className="">
-    //             Category: {transaction.category}
-    //           </h2>
-    //           <p className="">Amount: {transaction.amount} tk</p>
-    //           <p className="mb-5">
-    //             Date: {new Date(transaction.date).toLocaleDateString()}
-    //           </p>
-    //           <div className="flex justify-center gap-5 mt-4">
-    //             <Link 
-    //               onClick={()=> setTrans(transaction)}
-    //               className="btn btn-secondary sm:p-1 md:p-5 rounded-lg text-base"
-    //             >
-    //               Update
-    //             </Link>
-    //             <button
-    //               onClick={() => handleDelete(transaction._id)}
-    //               //   onClick={handleDelete}
-    //               className="btn btn-outline sm:p-1 md:p-5 lg:p-5 rounded-lg text-base"
-    //             >
-    //               Delete
-    //             </button>
-    //             <Link
-    //               to={`/transaction-details/${transaction._id}`}
-    //               className="btn btn-primary sm:p-1 md:p-5 rounded-lg text-base"
-    //             >
-    //               View Details
-    //             </Link>
-    //           </div>
-    //         </div>
-    //       ))}
-    //     </div>
-    //   )}
-
-    //   {trans && (
-    //     <dialog id="update_modal" className="modal modal-open">
-    //       <div className="modal-box">
-    //         <h3 className="font-bold text-lg text-center mb-3">
-    //           Update Transaction
-    //         </h3>
-
-    //         <form onSubmit={handleUpdate} className="space-y-3">
-    //           <select
-    //             name="type"
-    //             defaultValue={trans.type}
-    //             className="select select-bordered w-full"
-    //           >
-    //             <option value="Income">Income</option>
-    //             <option value="Expense">Expense</option>
-    //           </select>
-
-    //           <input
-    //             type="text"
-    //             name="category"
-    //             defaultValue={trans.category}
-    //             placeholder="Category"
-    //             className="input input-bordered w-full"
-    //             required
-    //           />
-
-    //           <input
-    //             type="number"
-    //             name="amount"
-    //             defaultValue={trans.amount}
-    //             placeholder="Amount"
-    //             className="input input-bordered w-full"
-    //             required
-    //           />
-
-    //           <input
-    //             type="date"
-    //             name="date"
-    //             defaultValue={trans.date?.slice(0, 10)}
-    //             className="input input-bordered w-full"
-    //             required
-    //           />
-
-    //           <textarea
-    //             name="description"
-    //             defaultValue={trans.description}
-    //             className="textarea textarea-bordered w-full"
-    //             placeholder="Description"
-    //           ></textarea>
-
-    //           <div className="flex justify-end gap-2 mt-4">
-    //             <button type="submit" className="btn btn-success">
-    //               Update
-    //             </button>
-    //             <button
-    //               onClick={() => setTrans(null)}
-    //               type="button"
-    //               className="btn btn-ghost"
-    //             >
-    //               Cancel
-    //             </button>
-    //           </div>
-    //         </form>
-    //       </div>
-    //     </dialog>
-    //   )}
-    // </div>
 
      <div className="min-h-screen bg-gradient-to-br from-emerald-300 via-cyan-400 to-sky-500 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-700 py-10">
       <div className="max-w-7xl mx-auto px-6">
