@@ -6,8 +6,9 @@ import { Link } from "react-router";
 const Footer = () => {
     const currentYear = new Date().getFullYear();
   return (
-    <footer className="bg-linear-to-r from-pink-500 to-red-600 py-8 px-4  rounded-xl mt-20">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
+    <footer className="bg-gradient-to-r from-[#ff9a9e] via-[#fad0c4] to-[#fbc2eb] dark:from-[#2e0249] dark:via-[#570a57] dark:to-[#a91079] py-8 px-4 rounded-xl mt-20 shadow-lg">
+
+      <div className="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
         <div>
           <div className="flex items-center space-x-2 text-white">
             <LuRotate3D size={25} />
@@ -34,10 +35,10 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/profile"
+                to="/my-profile"
                 className="text-gray-600 dark:text-gray-200 hover:text-blue-600"
               >
-                Profile
+                My Profile
               </Link>
             </li>
             <li>

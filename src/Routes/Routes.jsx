@@ -62,7 +62,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'reports',
-        element: <Reports></Reports>
+        element: (
+          <PrivateRoute>
+            <Reports/>
+          </PrivateRoute>
+        )
       },
       {
         path: "/auth/login",

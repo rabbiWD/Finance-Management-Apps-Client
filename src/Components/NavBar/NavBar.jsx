@@ -7,6 +7,8 @@ import { LuRotate3D } from "react-icons/lu";
 import { ImBoxAdd } from "react-icons/im";
 import { IoLogIn, IoLogOut } from "react-icons/io5";
 import toast from "react-hot-toast";
+import { BadgeEuro, BanknoteArrowUp, WalletMinimal } from "lucide-react";
+import { MdOutlineBarChart } from "react-icons/md";
 
 const NavBar = () => {
   const {user, signOutUser, setLoading, setUser} = use(AuthContext);
@@ -24,7 +26,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="navbar py-0 min-h-0 z-1 shadow-sm rounded-full glass-card max-w-7xl">
+    <div className="navbar py-0 min-h-0 z-50 rounded-full shadow-lg px-4 sm:px-8 lg:px-12  bg-gradient-to-r from-[#f3e7ff]/90 via-[#e0f7fa]/90 to-[#fff3e0]/90 dark:from-[#1e1b4b]/90 dark:via-[#1e293b]/90 dark:to-[#0f172a]/90 backdrop-blur-md border border-white/20 dark:border-gray-700 glass-card">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
@@ -97,7 +99,7 @@ const NavBar = () => {
           </ul>
         </div>
         <Link to={"/"} className="flex items-center gap-1 text-xl font-bold">
-          <LuRotate3D /> FinEase
+          <WalletMinimal /> FinEase
         </Link>
       </div>
       <div className="navbar-center hidden md:flex">
@@ -107,20 +109,20 @@ const NavBar = () => {
               <GoHomeFill />
               Home
             </NavLink>
-          </li>
+          </li> 
           <li>
             <NavLink to={"/add-transaction"}>
-              <IoLogoModelS /> Add Transaction
+              <BanknoteArrowUp /> Add Transaction
             </NavLink>
           </li>
           <li>
             <NavLink to={"/my-transaction"}>
-              <ImBoxAdd /> My Transaction
+              < BadgeEuro /> My Transaction
             </NavLink>
           </li>
            <li>
             <NavLink to={"/reports"}>
-              <ImBoxAdd /> Reports
+              <MdOutlineBarChart /> Reports
             </NavLink>
           </li>
           
@@ -214,13 +216,13 @@ const NavBar = () => {
           <>
               <Link
                 to="/auth/login"
-                className="btn bg-indigo-500 text-white hover:bg-indigo-600 px-5 py-2 transition-all duration-300 rounded-full"
+                className="btn rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold shadow-lg px-5 py-2 transition-all duration-300 "
               >
                 Log In
               </Link>
               <Link
                 to="/auth/register"
-                className="btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full transition-all duration-300"
+                className="btn bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-5 py-2 rounded-xl transition-all duration-300 hover:shadow-xl"
               >
                 Register
               </Link>
